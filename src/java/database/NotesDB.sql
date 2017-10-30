@@ -19,8 +19,8 @@ CREATE TABLE User(
 INSERT INTO User values('admin', 'password', 'test@test.com', 1, 'Bob', 'Bobberson');
 
 Create table Note(
-    noteId number not null,
+    noteId number not null AUTO_INCREMENT,
     dateCreated Date not null,
-    contents varchar2(10000) not null,
+    contents varchar(10000) not null,
     primary key (noteId)
 );

@@ -16,16 +16,28 @@ public class Note {
     private Date date;
     private String contents;
     
-    public Note(){
+    public Note(int noteId){
         
     }
-          
+    
+    public Note(Date date, String contents)
+    {
+        this.date = date;
+        this.contents = contents; 
+    }
+    
     public Note(int noteId, Date date, String contents) {
         this.noteId = noteId;
         this.date = date;
         this.contents = contents;
     }
-
+    
+      public Note(int noteId, String contents) {
+        this.noteId = noteId;
+        Date date = new Date();
+        this.date = date;
+        this.contents = contents;
+    }
     
     public int getNoteId() {
         return noteId;
