@@ -63,6 +63,44 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String noteId = request.getParameter("noteId");
+        String contents = request.getParameter("contents");
+        String action = request.getParameter("action");
+
+        NoteService ns = new NoteService();
+
+        try
+        {
+            if (action.equals("delete"))
+            {
+                String selectedNoteId = request.getParameter("selectedNoteId");
+                ns.delete(Integer.parseInt(selectedNoteId));
+            }
+            else if (action.equals("edit"))
+            {
+                Note note = new Note(Integer.parseInt(noteId), contents);
+
+                ns.update(note.getNoteId(), note.getContents());
+            } else if (action.equals("add"))
+            {
+                ns.insert(contents);
+            }
+        } 
+        catch (Exception ex)
+        {
+            request.setAttribute("message", "Error occured with regards to last action.");
+        }
+
+        ArrayList<Note> notes = null;
+        try
+        {
+            notes = (ArrayList<Note>) ns.getAll();
+        } catch (Exception ex)
+        {
+            Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("notes", notes);
+        getServletContext().getRequestDispatcher("/WEB-INF/notes.jsp").forward(request, response);
     }
 
     /**
