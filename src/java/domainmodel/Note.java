@@ -5,7 +5,7 @@
  */
 package domainmodel;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -13,55 +13,55 @@ import java.sql.Date;
  */
 public class Note {
     private int noteId;
-    private Date date;
     private String contents;
-    
-    public Note(int noteId){
-        
-    }
-    
-    public Note(Date date, String contents)
-    {
-        this.date = date;
-        this.contents = contents; 
-    }
-    
-    public Note(int noteId, Date date, String contents) {
+    private java.util.Date date;
+
+    public Note(int noteId, String contents) {
         this.noteId = noteId;
-        this.date = date;
         this.contents = contents;
-    }
-    
-      public Note(int noteId, String contents) {
-        this.noteId = noteId;
-        Date date = new Date();
-        this.date = date;
-        this.contents = contents;
-    }
-    
-    public int getNoteId() {
-        return noteId;
+        this.date = new Date();
     }
 
-    public Date getDate() {
-        return date;
+    public Note(int noteId) {
+        this.noteId = noteId;
+        this.date = new Date();
+    }
+
+    public Note(int noteId, java.sql.Date date, String contents) {
+        this.noteId = noteId;
+        this.date = date;
+        this.contents = contents;
+    }
+
+    public Note(String contents) {
+        this.date = new Date();
+        this.contents = contents;
+    }
+
+    public int getNoteId() {
+        return noteId;
     }
 
     public String getContents() {
         return contents;
     }
 
-    public void setNoteId(int noteId) {
-        this.noteId = noteId;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
     }
 
     public void setContents(String contents) {
         this.contents = contents;
     }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     
     
 }

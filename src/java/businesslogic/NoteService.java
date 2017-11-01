@@ -48,8 +48,7 @@ public class NoteService {
     
     public int insert(String contents) throws NotesDBException
     {
-        Date date = new Date();
-        Note note = new Note((java.sql.Date) date, contents);
+        Note note = new Note(contents);
         return noteDB.insert(note);
     }
 }

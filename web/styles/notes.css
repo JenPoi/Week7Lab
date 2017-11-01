@@ -1,4 +1,10 @@
 body {
     background-color: #ffffff;
 }
-
+tr, td
+{
+    border: solid black 1px;
+}
+table{
+  border: solid black 1px;
+}

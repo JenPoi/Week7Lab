@@ -7,6 +7,7 @@ package dataaccess;
 
 import domainmodel.Note;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class NoteDB {
             String preparedQuery = "INSERT INTO Note (noteId, dateCreated, contents) VALUES (?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(preparedQuery);
             ps.setInt(1, note.getNoteId());
-            ps.setDate(2, note.getDate());
+            ps.setDate(2, (Date) note.getDate());
             ps.setString(3, note.getContents());
             int rows = ps.executeUpdate();
             return rows;
@@ -57,7 +58,7 @@ public class NoteDB {
 
             PreparedStatement ps = connection.prepareStatement(preparedSQL);
 
-            ps.setDate(1, note.getDate());
+            ps.setDate(1, (Date) note.getDate());
             ps.setString(2, note.getContents());
             ps.setInt(3, note.getNoteId());
             int rows = ps.executeUpdate();
